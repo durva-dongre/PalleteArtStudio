@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palette Art Studio | Panvel</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- FontAwesome for high-quality, vector icons (Replacing Emojis) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --bg-main: #F4FBFF;
+  --text-main: #2B2D42;
+  --text-muted: #6C757D;
+  --pink: #FF6B6B;
+  --yellow: #FFD93D;
+  --green: #4ECDC4;
+  --blue: #45B7D1;
+  --orange: #FF9F1C;
+  --purple: #A855F7;
+  --white: #FFFFFF;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .nav-logo, .pricing-amount { font-family: 'Fredoka', sans-serif; }
+
+/* ── PLAYFUL ICON ANIMATIONS ── */
+.bounce-icon { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.course-card:hover .bounce-icon, 
+.about-reasons li:hover .bounce-icon,
+.art-slot:hover .bounce-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 5vw;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.nav-logo {
+  font-size: 1.8rem; color: var(--pink);
+  text-decoration: none; font-weight: 700;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+
+.nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+
+.nav-links a {
+  color: var(--text-main); text-decoration: none;
+  font-size: 0.97rem; font-weight: 700; transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--blue); }
+
+.nav-cta {
+  background: var(--green); color: #fff !important;
+  padding: 0.55rem 1.4rem; border-radius: 100px;
+  box-shadow: 0 4px 12px rgba(78,205,196,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(78,205,196,0.6); }
+
+/* Mobile Menu Button */
+.mobile-toggle {
+  display: none; background: none; border: none;
+  font-size: 1.5rem; color: var(--text-main); cursor: pointer;
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 8rem 5vw 6rem;
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #FFF3E0 0%, #FFF9E6 30%, #F4FBFF 65%, #E6F9F5 100%);
+}
+
+.hero-blobs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+
+.blob { position: absolute; border-radius: 50%; filter: blur(65px); opacity: 0.45; }
+.blob-1 { width: 520px; height: 520px; background: var(--pink); top: -120px; left: -160px; animation: drift 14s ease-in-out infinite alternate; }
+.blob-2 { width: 420px; height: 420px; background: var(--yellow); bottom: -80px; right: -120px; animation: drift 18s ease-in-out infinite alternate-reverse; }
+.blob-3 { width: 320px; height: 320px; background: var(--green); top: 25%; left: 60%; animation: drift 22s ease-in-out infinite alternate; }
+.blob-4 { width: 260px; height: 260px; background: var(--blue); top: 10%; right: 5%; animation: drift 16s ease-in-out infinite alternate; }
+.blob-5 { width: 380px; height: 380px; background: var(--orange); bottom: 10%; left: 25%; animation: drift 20s ease-in-out infinite alternate; opacity: 0.3; }
+
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(40px,30px) scale(1.08); }
+}
+
+.floaters { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.floater { position: absolute; border-radius: 50%; animation: floatUp 8s ease-in-out infinite; opacity: 0; }
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+  100% { transform: translateY(-120px) rotate(180deg); opacity: 0; }
+}
+.f1 { width:14px;height:14px;background:var(--pink);left:8%;top:75%;animation-delay:0s;animation-duration:7s; }
+.f2 { width:10px;height:10px;background:var(--yellow);left:18%;top:65%;animation-delay:1.2s;animation-duration:9s; }
+.f3 { width:18px;height:18px;background:var(--green);left:78%;top:70%;animation-delay:2s;animation-duration:8s; }
+.f4 { width:8px;height:8px;background:var(--blue);left:88%;top:80%;animation-delay:3s;animation-duration:6s; }
+.f5 { width:12px;height:12px;background:var(--orange);left:55%;top:60%;animation-delay:0.5s;animation-duration:10s; }
+.f6 { width:16px;height:16px;background:var(--purple);left:38%;top:82%;animation-delay:1.8s;animation-duration:7.5s; }
+.f7 { width:10px;height:10px;background:var(--green);left:28%;top:72%;animation-delay:4s;animation-duration:8.5s; }
+.f8 { width:14px;height:14px;background:var(--orange);left:65%;top:85%;animation-delay:2.5s;animation-duration:8s; }
+
+.hero-content { position: relative; z-index: 1; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.92rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--orange); background: rgba(255,159,28,0.15);
+  padding: 0.5rem 1.4rem; border-radius: 50px; margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.1;
+  color: var(--text-main); margin-bottom: 1rem;
+}
+
+.hero-title span { color: var(--pink); position: relative; }
+.hero-title span::after {
+  content: '\f0d0'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+  font-size: 2rem; position: absolute; top: -15px; right: -30px; color: var(--yellow);
+  transform: rotate(15deg);
+}
+
+.hero-tagline {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem); color: var(--text-muted);
+  max-width: 580px; line-height: 1.65; margin: 0 auto 2.5rem; font-weight: 600;
+}
+
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 1rem 2.5rem; background: var(--pink); color: #fff;
+  border: none; border-radius: 100px;
+  font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 700;
+  cursor: pointer; text-decoration: none;
+  box-shadow: 0 6px 18px rgba(255,107,107,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255,107,107,0.5); }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 1rem 2.5rem; background: var(--white); color: var(--blue);
+  border: 2.5px solid var(--blue); border-radius: 100px;
+  font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 700;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.2s; 
+}
+.btn-secondary:hover { background: var(--blue); color: #fff; transform: translateY(-3px); }
+
+/* ── SHARED ── */
+section { padding: 6rem 5vw; }
+
+.section-label {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'Fredoka', sans-serif; font-size: 1rem;
+  text-transform: uppercase; color: var(--blue);
+  margin-bottom: 0.6rem; letter-spacing: 2px;
+}
+
+.section-title { font-size: clamp(2rem, 4vw, 3.2rem); color: var(--text-main); margin-bottom: 1rem; }
+
+.section-sub {
+  color: var(--text-muted); font-size: 1.05rem; line-height: 1.7;
+  max-width: 580px; font-weight: 600; margin-bottom: 2rem;
+}
+
+.divider {
+  width: 50px; height: 4px;
+  background: linear-gradient(90deg, var(--pink), var(--yellow));
+  border-radius: 4px; margin: 1rem 0 1.8rem;
+}
+
+/* ── ABOUT ── */
+#about { background: #FFFAF5; }
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: center; max-width: 1100px; margin: 0 auto;
+}
+
+.about-reasons { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
+
+.about-reasons li {
+  display: flex; align-items: flex-start; gap: 1rem;
+  font-size: 1.05rem; color: var(--text-main); font-weight: 600; line-height: 1.5;
+}
+
+.reason-icon {
+  font-size: 1.4rem; flex-shrink: 0; color: var(--pink);
+  width: 46px; height: 46px;
+  background: var(--white); border: 2px solid rgba(255,107,107,0.2); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.teacher-card {
+  background: var(--bg-main); border: 3px dashed var(--yellow);
+  border-radius: 28px; padding: 3rem 2.5rem; text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.teacher-avatar {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--orange));
+  margin: 0 auto 1.2rem; color: white;
+  display: flex; align-items: center; justify-content: center; font-size: 3rem;
+}
+
+.teacher-name { font-size: 1.9rem; color: var(--text-main); margin-bottom: 0.2rem; }
+.teacher-title { color: var(--pink); font-weight: 700; font-size: 1rem; margin-bottom: 1rem; }
+
+.teacher-tags {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;
+}
+
+.teacher-tag {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.4rem 0.9rem;
+  background: white; border-radius: 100px;
+  font-size: 0.82rem; font-weight: 700; color: var(--blue);
+  border: 2px solid var(--blue);
+}
+
+.teacher-bio { color: var(--text-muted); font-size: 0.97rem; line-height: 1.65; font-weight: 600; }
+
+/* ── COURSES ── */
+#courses { background: linear-gradient(135deg, #FFF3E0 0%, #FFF9E6 100%); }
+
+.courses-header { max-width: 1100px; margin: 0 auto 3rem; }
+
+.courses-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+
+.course-card {
+  background: var(--white); border-radius: 28px; padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+  border-bottom: 6px solid; transition: transform 0.25s;
+  position: relative; overflow: hidden;
+}
+
+.course-card:hover { transform: translateY(-8px); }
+.course-card:nth-child(1) { border-color: var(--pink); }
+.course-card:nth-child(2) { border-color: var(--green); }
+
+.course-icon { 
+  font-size: 3rem; margin-bottom: 1rem; display: block; 
+}
+.course-card:nth-child(1) .course-icon { color: var(--pink); }
+.course-card:nth-child(2) .course-icon { color: var(--green); }
+
+.course-name { font-size: 2rem; margin-bottom: 0.4rem; }
+.course-age { font-weight: 700; font-size: 0.97rem; margin-bottom: 1rem; }
+.course-card:nth-child(1) .course-age { color: var(--pink); }
+.course-card:nth-child(2) .course-age { color: var(--green); }
+
+.course-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.8rem; line-height: 1.65; }
+
+.course-topics { list-style: none; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+
+.topic-tag {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.45rem 1rem; background: var(--bg-main);
+  border-radius: 100px; font-size: 0.87rem; font-weight: 700; color: var(--blue);
+}
+
+/* ── SHOWCASE ── */
+#showcase {
+  background: linear-gradient(160deg, #FFF3E0 0%, #FFF9E6 50%, #FFFAF5 100%);
+  position: relative; overflow: hidden;
+}
+
+#showcase::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 700px 450px at 5% 15%, rgba(255,159,28,0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 600px 400px at 95% 85%, rgba(255,107,107,0.1) 0%, transparent 70%);
+}
+
+.showcase-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.showcase-header { margin-bottom: 3.5rem; }
+
+.showcase-featured   { display: grid; grid-template-columns: 1fr 1fr;       gap: 1.8rem; margin-bottom: 1.8rem; }
+.showcase-row-3      { display: grid; grid-template-columns: 1fr 1fr 1fr;   gap: 1.8rem; margin-bottom: 1.8rem; }
+.showcase-row-wide   { display: grid; grid-template-columns: 2fr 1fr 1fr;   gap: 1.8rem; margin-bottom: 1.8rem; }
+.showcase-row-last   { display: grid; grid-template-columns: 1fr 1fr;       gap: 1.8rem; }
+
+.art-slot {
+  border-radius: 20px; overflow: hidden; position: relative;
+  cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.07);
+}
+.art-slot:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 18px 38px rgba(0,0,0,0.13); }
+
+.art-slot-inner {
+  width: 100%; height: 100%; background: var(--white);
+  border: 3px dashed rgba(255,159,28,0.4); border-radius: 18px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.art-slot:hover .art-slot-inner { border-color: var(--orange); background: #FFFAF5; }
+
+.slot-num  { font-family: 'Fredoka', sans-serif; font-size: 1.4rem; color: rgba(255,159,28,0.3); line-height: 1; }
+.slot-icon { font-size: 2.2rem; color: var(--orange); opacity: 0.4; }
+.slot-label { font-size: 0.8rem; font-weight: 700; color: var(--orange); opacity: 0.6; text-align: center; padding: 0 1rem; }
+
+.slot-lg   { height: 340px; }
+.slot-md   { height: 250px; }
+.slot-wide { height: 230px; }
+.slot-port { height: 230px; }
+.slot-sq   { height: 260px; }
+
+.showcase-note { text-align: center; margin-top: 2.5rem; color: var(--text-muted); font-size: 0.92rem; font-weight: 600; }
+
+/* ── CURRICULUM ── */
+#curriculum { background: linear-gradient(135deg, #FFF0E6 0%, #EDE9FE 100%); }
+
+.curriculum-inner { max-width: 850px; margin: 0 auto; }
+
+.timeline { position: relative; padding-left: 2.2rem; margin-top: 2rem; }
+
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: linear-gradient(180deg, var(--pink), var(--yellow), var(--green));
+  border-radius: 3px;
+}
+
+.timeline-item { position: relative; margin-bottom: 0.6rem; }
+
+.timeline-dot {
+  position: absolute; left: -2.2rem; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--pink); border: 3px solid #EDE9FE;
+  z-index: 1; transition: background 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.timeline-item.open .timeline-dot { background: var(--yellow); transform: translateY(-50%) scale(1.4); }
+
+.timeline-month-btn {
+  width: 100%; text-align: left;
+  background: var(--white); border: 2px solid transparent;
+  border-radius: 16px; padding: 1rem 1.4rem;
+  color: var(--text-main); font-family: 'Nunito', sans-serif;
+  font-size: 1.05rem; font-weight: 700;
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.timeline-item.open .timeline-month-btn,
+.timeline-month-btn:hover {
+  border-color: var(--pink); box-shadow: 0 5px 15px rgba(255,107,107,0.15);
+}
+
+.timeline-chevron { color: var(--pink); font-size: 0.9rem; transition: transform 0.25s; }
+.timeline-item.open .timeline-chevron { transform: rotate(180deg); }
+
+.timeline-content { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.timeline-item.open .timeline-content { max-height: 300px; }
+
+.timeline-content-inner {
+  padding: 1rem 1.4rem 1.4rem;
+  border: 2px solid var(--pink); border-top: none;
+  border-radius: 0 0 16px 16px;
+  background: var(--white); margin-top: -4px;
+}
+
+.timeline-content-inner ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.timeline-content-inner li {
+  padding: 0.3rem 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem;
+  background: rgba(255,107,107,0.1); border: 1.5px solid rgba(255,107,107,0.3);
+  border-radius: 100px; font-size: 0.85rem; font-weight: 700; color: var(--pink);
+}
+
+/* ── GALLERY ── */
+#gallery { background: var(--white); }
+.gallery-header { max-width: 1100px; margin: 0 auto 3rem; }
+.gallery-masonry { max-width: 1100px; margin: 0 auto; columns: 3; column-gap: 1.5rem; }
+
+.gallery-item {
+  break-inside: avoid; margin-bottom: 1.5rem;
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+  transition: transform 0.3s;
+}
+
+.gallery-item:hover { transform: scale(1.03); }
+
+.gallery-placeholder {
+  background: var(--bg-main);
+  border: 3px dashed rgba(69,183,209,0.4);
+  border-radius: 20px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.6rem;
+}
+
+.gallery-placeholder .ph-icon { font-size: 2.5rem; color: var(--blue); opacity: 0.4; }
+.gallery-placeholder .ph-text { font-size: 0.82rem; font-weight: 700; color: var(--blue); opacity: 0.6; }
+
+.gp-1 { height: 230px; } .gp-2 { height: 180px; } .gp-3 { height: 290px; }
+.gp-4 { height: 210px; } .gp-5 { height: 250px; } .gp-6 { height: 195px; }
+
+/* ── FEES ── */
+#fees { background: linear-gradient(135deg, #FFF3E0 0%, #E6F9F5 100%); }
+
+.fees-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: center;
+}
+
+.fees-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+.fees-list li {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 1.05rem; font-weight: 700; color: var(--text-main);
+}
+.fees-list .fi { font-size: 1.4rem; color: var(--green); }
+
+.pricing-card {
+  background: var(--white); border-radius: 28px; padding: 3rem;
+  text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 4px solid var(--green); position: relative; overflow: hidden;
+}
+
+.pricing-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--pink), var(--yellow), var(--green), var(--blue));
+}
+
+.pricing-badge {
+  display: inline-block; padding: 0.4rem 1.2rem;
+  background: rgba(255,217,61,0.2); border: 2px solid var(--yellow);
+  border-radius: 100px; font-size: 0.85rem; font-weight: 700;
+  color: #B8860B; margin-bottom: 1.5rem;
+}
+
+.pricing-amount { font-size: 4.5rem; color: var(--text-main); line-height: 1; margin-bottom: 0.4rem; }
+.pricing-amount span { font-size: 1.5rem; color: var(--text-muted); font-family: 'Nunito', sans-serif; }
+.pricing-period { font-size: 0.95rem; font-weight: 700; color: var(--text-muted); margin-bottom: 2rem; }
+
+.pricing-features { list-style: none; text-align: left; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.9rem; }
+.pricing-features li { display: flex; align-items: center; gap: 0.8rem; font-size: 1rem; font-weight: 700; color: var(--text-main); }
+.check-icon { font-size: 1.2rem; color: var(--green); }
+
+/* ── FAQ ── */
+#faq { background: #F0FFFE; }
+.faq-inner { max-width: 800px; margin: 0 auto; }
+.faq-header { margin-bottom: 3rem; text-align: center; }
+
+.faq-list { display: flex; flex-direction: column; gap: 1rem; }
+.faq-item {
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  border: 2px solid transparent; transition: border-color 0.2s;
+}
+.faq-item.open { border-color: var(--green); }
+
+.faq-question {
+  width: 100%; text-align: left; background: var(--white); border: none;
+  padding: 1.2rem 1.5rem; color: var(--text-main);
+  font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700;
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  transition: background 0.2s;
+}
+.faq-item.open .faq-question, .faq-question:hover { background: #F0FFFE; }
+
+.faq-chevron { color: var(--green); font-size: 1rem; transition: transform 0.25s; }
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.faq-item.open .faq-answer { max-height: 200px; }
+.faq-answer p { padding: 0 1.5rem 1.3rem; color: var(--text-muted); font-size: 0.97rem; line-height: 1.7; font-weight: 600; }
+
+/* ── CONTACT ── */
+#contact { background: #FFFAF5; }
+.contact-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: start;
+}
+
+.contact-rows { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+.contact-row { display: flex; align-items: flex-start; gap: 1rem; }
+.contact-icon {
+  width: 46px; height: 46px; border-radius: 14px; color: var(--pink);
+  background: var(--bg-main); border: 2px solid rgba(255,107,107,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.contact-label { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.2rem; font-weight: 700; }
+.contact-value { font-size: 1rem; font-weight: 700; color: var(--text-main); }
+
+.whatsapp-btn {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  margin-top: 2rem; padding: 0.9rem 2rem;
+  background: #25D366; color: #fff;
+  border-radius: 100px; font-size: 1rem; font-weight: 700;
+  text-decoration: none; transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 6px 15px rgba(37,211,102,0.35);
+}
+.whatsapp-btn:hover { background: #1fb55c; transform: translateY(-2px); }
+
+.contact-form {
+  background: var(--bg-main); border-radius: 24px; padding: 2.5rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+.form-title { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--text-main); margin-bottom: 1.8rem; }
+.form-row { margin-bottom: 1.2rem; }
+.form-row label { display: block; font-size: 0.87rem; font-weight: 700; color: var(--blue); margin-bottom: 0.4rem; }
+
+.form-row input, .form-row select, .form-row textarea {
+  width: 100%; background: var(--white);
+  border: 2px solid rgba(69,183,209,0.3); border-radius: 12px;
+  padding: 0.85rem 1rem; color: var(--text-main);
+  font-family: 'Nunito', sans-serif; font-size: 0.97rem; font-weight: 600;
+  outline: none; transition: border-color 0.2s;
+}
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--blue); }
+.form-row textarea { resize: vertical; min-height: 90px; }
+
+.form-submit {
+  width: 100%; padding: 1rem; background: var(--pink); color: #fff;
+  border: none; border-radius: 100px;
+  font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 700;
+  cursor: pointer; box-shadow: 0 6px 15px rgba(255,107,107,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(255,107,107,0.5); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--text-main); color: #fff;
+  padding: 3rem 5vw; text-align: center;
+}
+.footer-logo { font-family: 'Fredoka', sans-serif; font-size: 2rem; color: var(--yellow); margin-bottom: 0.5rem; }
+.footer-copy { color: rgba(255,255,255,0.5); font-size: 0.87rem; margin-top: 1.5rem; }
+
+/* ── RESPONSIVE PC AND MOBILE OPTIMIZATION ── */
+@media (max-width: 992px) {
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.9rem; }
+  .gallery-masonry { columns: 2; }
+}
+
+@media (max-width: 768px) {
+  section { padding: 4rem 5vw; }
+  .mobile-toggle { display: block; }
+  .nav-links {
+    position: fixed; top: 70px; right: -100%;
+    flex-direction: column; width: 100%; height: calc(100vh - 70px);
+    background: rgba(255, 255, 255, 0.98); padding: 2rem;
+    transition: right 0.3s ease-in-out;
+    box-shadow: inset 0 10px 15px -10px rgba(0,0,0,0.1);
+  }
+  .nav-links.active { right: 0; }
+  
+  .about-grid, .courses-grid, .fees-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  
+  .showcase-featured, .showcase-row-3, .showcase-row-wide, .showcase-row-last {
+    grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .slot-lg, .slot-md, .slot-wide, .slot-port, .slot-sq { height: 180px; }
+}
+
+@media (max-width: 480px) {
+  .showcase-featured, .showcase-row-3, .showcase-row-wide, .showcase-row-last { grid-template-columns: 1fr; }
+  .gallery-masonry { columns: 1; }
+  .hero-title { font-size: 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <i class="fa-solid fa-palette"></i> Palette
+  </a>
+  <button class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about" onclick="toggleMenu()">About</a></li>
+    <li><a href="#courses" onclick="toggleMenu()">Courses</a></li>
+    <li><a href="#showcase" onclick="toggleMenu()">My Art</a></li>
+    <li><a href="#curriculum" onclick="toggleMenu()">Curriculum</a></li>
+    <li><a href="#gallery" onclick="toggleMenu()">Gallery</a></li>
+    <li><a href="#fees" onclick="toggleMenu()">Fees</a></li>
+    <li><a href="#faq" onclick="toggleMenu()">FAQs</a></li>
+    <li><a href="#contact" class="nav-cta" onclick="toggleMenu()"><i class="fa-solid fa-rocket"></i> Enrol Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+  </div>
+  <div class="floaters">
+    <div class="floater f1"></div><div class="floater f2"></div><div class="floater f3"></div>
+    <div class="floater f4"></div><div class="floater f5"></div><div class="floater f6"></div>
+    <div class="floater f7"></div><div class="floater f8"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow"><i class="fa-solid fa-star"></i> Ages 6–13 · Panvel, Home Studio</p>
+    <h1 class="hero-title">
+      Where Imagination<br>Finds Its <span>Colors!</span>
+    </h1>
+    <p class="hero-tagline">
+      A fun, nurturing weekend art studio where kids explore, create, and grow — one bright brushstroke at a time.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary"><i class="fa-solid fa-rocket bounce-icon"></i> Enrol Now</a>
+      <a href="https://wa.me/918268300074?text=Hi%20Durva%2C%20I%27d%20like%20to%20book%20a%20free%20trial%20class%20at%20Palette%20Art%20Studio!" class="btn-secondary" target="_blank"><i class="fa-brands fa-whatsapp bounce-icon"></i> Book a Free Trial</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <span class="section-label"><i class="fa-regular fa-hand-spock"></i> Welcome to Palette</span>
+      <h2 class="section-title">A Space Built for Young Artists</h2>
+      <div class="divider"></div>
+      <p class="section-sub">A cosy, home-based studio in Panvel where kids aged 6–13 freely express themselves. We balance playful creativity with real, lasting skill-building.</p>
+      <ul class="about-reasons">
+        <li>
+          <span class="reason-icon"><i class="fa-solid fa-shapes bounce-icon"></i></span>
+          <span>Small, friendly batches so every child gets personal attention from Durva directly.</span>
+        </li>
+        <li>
+          <span class="reason-icon"><i class="fa-solid fa-image bounce-icon"></i></span>
+          <span>Specialising in poster art, acrylic painting, and canvas fabric work — techniques kids rarely learn in school.</span>
+        </li>
+        <li>
+          <span class="reason-icon"><i class="fa-solid fa-house-chimney-window bounce-icon"></i></span>
+          <span>Warm home-studio setting — relaxed, safe, and welcoming for every child.</span>
+        </li>
+        <li>
+          <span class="reason-icon"><i class="fa-solid fa-rainbow bounce-icon"></i></span>
+          <span>A space where there are no mistakes — only happy accidents and growth!</span>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <div class="teacher-card">
+        <div class="teacher-avatar"><i class="fa-solid fa-palette bounce-icon"></i></div>
+        <p class="teacher-name">Durva Dongre</p>
+        <p class="teacher-title">Founder &amp; Art Educator</p>
+        <div class="teacher-tags">
+          <span class="teacher-tag"><i class="fa-solid fa-trophy"></i> A-Grade Exams</span>
+          <span class="teacher-tag"><i class="fa-solid fa-graduation-cap"></i> MAH AAC CET</span>
+          <span class="teacher-tag"><i class="fa-solid fa-paintbrush"></i> 15 Yrs Practice</span>
+        </div>
+        <p class="teacher-bio">
+          A self-taught artist with 15 years of practice, A-grade passes in both Intermediate &amp; Elementary state art exams, and a MAH AAC CET qualification. Durva specialises in poster art, acrylics, and canvas fabric work — and brings all of that passion straight into the classroom!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="courses-header">
+    <span class="section-label"><i class="fa-solid fa-pen-nib"></i> What We Teach</span>
+    <h2 class="section-title">Two Fun Programs</h2>
+    <div class="divider"></div>
+    <p class="section-sub" style="margin: 0 auto 2rem;">Each program is designed for a different stage of your child's creative journey.</p>
+  </div>
+  <div class="courses-grid">
+    <div class="course-card">
+      <span class="course-icon"><i class="fa-solid fa-seedling bounce-icon"></i></span>
+      <h3 class="course-name">Little Artists</h3>
+      <p class="course-age">Ages 6–10</p>
+      <p class="course-desc">A world of colour, texture, and wonder! Kids explore creativity through hands-on projects rooted in nature, festivals, and everyday imagination.</p>
+      <ul class="course-topics">
+        <li class="topic-tag"><i class="fa-solid fa-pencil"></i> Fun Drawing</li>
+        <li class="topic-tag"><i class="fa-solid fa-palette"></i> Colouring</li>
+        <li class="topic-tag"><i class="fa-solid fa-scissors"></i> Crafts</li>
+        <li class="topic-tag"><i class="fa-solid fa-leaf"></i> Nature Art</li>
+        <li class="topic-tag"><i class="fa-solid fa-fire"></i> Festival Themes</li>
+        <li class="topic-tag"><i class="fa-solid fa-hand-pointer"></i> Finger Painting</li>
+      </ul>
+    </div>
+    <div class="course-card">
+      <span class="course-icon"><i class="fa-solid fa-rocket bounce-icon"></i></span>
+      <h3 class="course-name">Young Creators</h3>
+      <p class="course-age">Ages 11–13</p>
+      <p class="course-desc">For kids ready to dive deeper. We build real foundational skills — shading, perspective, and visual storytelling with Durva's signature specialties.</p>
+      <ul class="course-topics">
+        <li class="topic-tag"><i class="fa-solid fa-ruler-combined"></i> Sketching</li>
+        <li class="topic-tag"><i class="fa-solid fa-moon"></i> Shading</li>
+        <li class="topic-tag"><i class="fa-solid fa-ruler"></i> Perspective</li>
+        <li class="topic-tag"><i class="fa-solid fa-scroll"></i> Poster Art</li>
+        <li class="topic-tag"><i class="fa-solid fa-paintbrush"></i> Acrylic Painting</li>
+        <li class="topic-tag"><i class="fa-solid fa-masks-theater"></i> Canvas Work</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section id="showcase">
+  <div class="showcase-inner">
+    <div class="showcase-header">
+      <span class="section-label"><i class="fa-solid fa-star"></i> Durva's Studio</span>
+      <h2 class="section-title">My Best Artworks</h2>
+      <div class="divider"></div>
+      <p class="section-sub">A glimpse into the kinds of work that inspire every class at Palette. Artwork coming soon!</p>
+    </div>
+
+    <!-- Row 1 -->
+    <div class="showcase-featured">
+      <div class="art-slot">
+        <div class="art-slot-inner slot-lg">
+          <span class="slot-icon"><i class="fa-regular fa-image bounce-icon"></i></span>
+          <span class="slot-num">01</span>
+          <span class="slot-label">Featured Artwork</span>
+        </div>
+      </div>
+      <div class="art-slot">
+        <div class="art-slot-inner slot-lg">
+          <span class="slot-icon"><i class="fa-solid fa-palette bounce-icon"></i></span>
+          <span class="slot-num">02</span>
+          <span class="slot-label">Featured Artwork</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="showcase-row-3">
+      <div class="art-slot">
+        <div class="art-slot-inner slot-md">
+          <span class="slot-icon"><i class="fa-solid fa-paintbrush bounce-icon"></i></span>
+          <span class="slot-num">03</span>
+          <span class="slot-label">Acrylic / Canvas</span>
+        </div>
+      </div>
+      <div class="art-slot">
+        <div class="art-slot-inner slot-md">
+          <span class="slot-icon"><i class="fa-solid fa-scroll bounce-icon"></i></span>
+          <span class="slot-num">04</span>
+          <span class="slot-label">Poster Art</span>
+        </div>
+      </div>
+      <div class="art-slot">
+        <div class="art-slot-inner slot-md">
+          <span class="slot-icon"><i class="fa-solid fa-spray-can bounce-icon"></i></span>
+          <span class="slot-num">05</span>
+          <span class="slot-label">Mixed Media</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="showcase-row-wide">
+      <div class="art-slot">
+        <div class="art-slot-inner slot-wide">
+          <span class="slot-icon"><i class="fa-solid fa-mountain-sun bounce-icon"></i></span>
+          <span class="slot-num">06</span>
+          <span class="slot-label">Landscape</span>
+        </div>
+      </div>
+      <div class="art-slot">
+        <div class="art-slot-inner slot-port">
+          <span class="slot-icon"><i class="fa-solid fa-pencil bounce-icon"></i></span>
+          <span class="slot-num">07</span>
+          <span class="slot-label">Sketch Work</span>
+        </div>
+      </div>
+      <div class="art-slot">
+        <div class="art-slot-inner slot-port">
+          <span class="slot-icon"><i class="fa-solid fa-magnifying-glass bounce-icon"></i></span>
+          <span class="slot-num">08</span>
+          <span class="slot-label">Detail Study</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="showcase-row-last">
+      <div class="art-slot">
+        <div class="art-slot-inner slot-sq">
+          <span class="slot-icon"><i class="fa-solid fa-masks-theater bounce-icon"></i></span>
+          <span class="slot-num">09</span>
+          <span class="slot-label">Canvas Fabric Work</span>
+        </div>
+      </div>
+      <div class="art-slot">
+        <div class="art-slot-inner slot-sq">
+          <span class="slot-icon"><i class="fa-solid fa-wand-magic-sparkles bounce-icon"></i></span>
+          <span class="slot-num">10</span>
+          <span class="slot-label">Creative Freeplay</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM TIMELINE -->
+<section id="curriculum">
+  <div class="curriculum-inner">
+    <span class="section-label"><i class="fa-solid fa-book-open"></i> How We Learn</span>
+    <h2 class="section-title">The Curriculum Journey</h2>
+    <div class="divider"></div>
+    <p class="section-sub">A structured approach to ensure skill development week by week.</p>
+    
+    <div class="timeline">
+      <!-- Item 1 -->
+      <div class="timeline-item open" onclick="toggleAccordion(this)">
+        <div class="timeline-dot"></div>
+        <button class="timeline-month-btn">
+          Month 1: The Foundations <i class="fa-solid fa-chevron-down timeline-chevron"></i>
+        </button>
+        <div class="timeline-content">
+          <div class="timeline-content-inner">
+            <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.95rem;">Learning the rules before breaking them. Focus on pencil control and basic shapes.</p>
+            <ul>
+              <li><i class="fa-solid fa-pencil"></i> Line Control</li>
+              <li><i class="fa-solid fa-cube"></i> 3D Shapes</li>
+              <li><i class="fa-solid fa-circle-half-stroke"></i> Simple Shading</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="timeline-item" onclick="toggleAccordion(this)">
+        <div class="timeline-dot"></div>
+        <button class="timeline-month-btn">
+          Month 2: Color Exploration <i class="fa-solid fa-chevron-down timeline-chevron"></i>
+        </button>
+        <div class="timeline-content">
+          <div class="timeline-content-inner">
+            <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.95rem;">Diving into color theory using pastels and watercolors.</p>
+            <ul>
+              <li><i class="fa-solid fa-palette"></i> Color Wheel</li>
+              <li><i class="fa-solid fa-droplet"></i> Watercolors</li>
+              <li><i class="fa-solid fa-brush"></i> Blending</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="timeline-item" onclick="toggleAccordion(this)">
+        <div class="timeline-dot"></div>
+        <button class="timeline-month-btn">
+          Month 3: Advanced Techniques <i class="fa-solid fa-chevron-down timeline-chevron"></i>
+        </button>
+        <div class="timeline-content">
+          <div class="timeline-content-inner">
+            <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.95rem;">Introducing acrylics and poster colors for bold, vibrant artworks.</p>
+            <ul>
+              <li><i class="fa-solid fa-fill-drip"></i> Acrylics</li>
+              <li><i class="fa-solid fa-layer-group"></i> Layering</li>
+              <li><i class="fa-solid fa-image"></i> Poster Art</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-header text-center">
+    <span class="section-label"><i class="fa-solid fa-camera-retro"></i> In The Studio</span>
+    <h2 class="section-title">Student Gallery</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="gallery-masonry">
+    <!-- Placeholders -->
+    <div class="gallery-item gallery-placeholder gp-1">
+      <i class="fa-solid fa-image ph-icon bounce-icon"></i><span class="ph-text">Student Art</span>
+    </div>
+    <div class="gallery-item gallery-placeholder gp-2">
+      <i class="fa-solid fa-palette ph-icon bounce-icon"></i><span class="ph-text">Class Photo</span>
+    </div>
+    <div class="gallery-item gallery-placeholder gp-3">
+      <i class="fa-solid fa-brush ph-icon bounce-icon"></i><span class="ph-text">Masterpiece</span>
+    </div>
+    <div class="gallery-item gallery-placeholder gp-4">
+      <i class="fa-solid fa-star ph-icon bounce-icon"></i><span class="ph-text">Creative Moment</span>
+    </div>
+    <div class="gallery-item gallery-placeholder gp-5">
+      <i class="fa-solid fa-shapes ph-icon bounce-icon"></i><span class="ph-text">Project Work</span>
+    </div>
+    <div class="gallery-item gallery-placeholder gp-6">
+      <i class="fa-solid fa-wand-magic-sparkles ph-icon bounce-icon"></i><span class="ph-text">Happy Artist</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEES -->
+<section id="fees">
+  <div class="fees-inner">
+    <div>
+      <span class="section-label"><i class="fa-solid fa-ticket"></i> Join The Fun</span>
+      <h2 class="section-title">Studio Fees</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Simple, transparent pricing for weekend creativity.</p>
+      <ul class="fees-list">
+        <li><i class="fa-solid fa-calendar-days fi"></i> Weekend Classes (Sat & Sun)</li>
+        <li><i class="fa-solid fa-clock fi"></i> 2 Hours Per Session</li>
+        <li><i class="fa-solid fa-clipboard-check fi"></i> All Base Materials Provided</li>
+      </ul>
+    </div>
+    <div class="pricing-card">
+      <span class="pricing-badge"><i class="fa-solid fa-star"></i> Launch Special</span>
+      <div class="pricing-amount">₹600</div>
+      <div class="pricing-period">per month</div>
+      <ul class="pricing-features">
+        <li><i class="fa-solid fa-check check-icon"></i> 8 Classes per month</li>
+        <li><i class="fa-solid fa-check check-icon"></i> Small batch focus</li>
+        <li><i class="fa-solid fa-check check-icon"></i> Weekly progress updates</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="width: 100%; justify-content: center;">Enrol Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <span class="section-label" style="justify-content: center;"><i class="fa-solid fa-circle-question"></i> Questions?</span>
+      <h2 class="section-title text-center">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleAccordion(this)">
+        <button class="faq-question">What materials does my child need to bring? <i class="fa-solid fa-chevron-down faq-chevron"></i></button>
+        <div class="faq-answer"><p>We provide all base materials like special papers, canvases, and paints for specific projects. We just ask students to bring a basic pencil box (pencils, eraser, basic colors) for everyday sketching.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleAccordion(this)">
+        <button class="faq-question">Do you offer trial classes? <i class="fa-solid fa-chevron-down faq-chevron"></i></button>
+        <div class="faq-answer"><p>Yes! We offer a one-time free trial class so your child can experience the studio environment and see if they enjoy it before you commit to a full month.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleAccordion(this)">
+        <button class="faq-question">Where is the studio located exactly? <i class="fa-solid fa-chevron-down faq-chevron"></i></button>
+        <div class="faq-answer"><p>Palette is a home-based studio located safely in a residential area in Panvel. Exact address details will be shared upon booking your trial class or enrollment.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div>
+      <span class="section-label"><i class="fa-regular fa-paper-plane"></i> Get in Touch</span>
+      <h2 class="section-title">Let's Talk Art!</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Have a question or ready to secure a spot for your child? Drop a message or reach out on WhatsApp.</p>
+      
+      <div class="contact-rows">
+        <div class="contact-row">
+          <div class="contact-icon"><i class="fa-solid fa-location-dot bounce-icon"></i></div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Panvel, Maharashtra</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon"><i class="fa-solid fa-phone bounce-icon"></i></div>
+          <div>
+            <div class="contact-label">Call / WhatsApp</div>
+            <div class="contact-value">+91 8268300074</div>
+          </div>
+        </div>
+      </div>
+      
+      <a href="https://wa.me/918268300074?text=Hi%20Durva%2C%20I%27m%20interested%20in%20enrolling%20my%20child%20at%20Palette%20Art%20Studio!" class="whatsapp-btn" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> Chat with Durva
+      </a>
+    </div>
+    
+    <div class="contact-form">
+      <h3 class="form-title">Send a Message</h3>
+      <form action="#" method="POST">
+        <div class="form-row">
+          <label>Parent's Name</label>
+          <input type="text" placeholder="Enter your name" required>
+        </div>
+        <div class="form-row">
+          <label>Child's Age</label>
+          <select required>
+            <option value="" disabled selected>Select age</option>
+            <option value="6-10">6 - 10 Years</option>
+            <option value="11-13">11 - 13 Years</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Message / Question</label>
+          <textarea placeholder="How can we help?" required></textarea>
+        </div>
+        <button type="submit" class="form-submit"><i class="fa-solid fa-paper-plane"></i> Submit Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <h2 class="footer-logo"><i class="fa-solid fa-palette"></i> Palette Art Studio</h2>
+  <p style="font-weight: 600;">Panvel, Maharashtra</p>
+  <p class="footer-copy">© 2026 Palette Art Studio by Durva Dongre. All rights reserved.</p>
+</footer>
+
+<!-- Interactive Scripts -->
+<script>
+  // Mobile Menu Toggle
+  function toggleMenu() {
+    const nav = document.getElementById('nav-links');
+    nav.classList.toggle('active');
+  }
+
+  // Accordion Toggle for Timeline & FAQ
+  function toggleAccordion(element) {
+    element.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
