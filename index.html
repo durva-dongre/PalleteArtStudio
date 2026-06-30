@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Palette Art Studio | Panvel</title>
-<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<!-- FontAwesome for high-quality, vector icons (Replacing Emojis) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -35,15 +36,13 @@ body {
 
 h1, h2, h3, .nav-logo, .pricing-amount { font-family: 'Fredoka', sans-serif; }
 
-/* ── PLAYFUL ICON ANIMATIONS ── */
 .bounce-icon { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.course-card:hover .bounce-icon, 
+.course-card:hover .bounce-icon,
 .about-reasons li:hover .bounce-icon,
 .art-slot:hover .bounce-icon {
   transform: scale(1.2) rotate(5deg);
 }
 
-/* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -77,13 +76,12 @@ nav {
 
 .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(78,205,196,0.6); }
 
-/* Mobile Menu Button */
 .mobile-toggle {
   display: none; background: none; border: none;
   font-size: 1.5rem; color: var(--text-main); cursor: pointer;
+  padding: 0.5rem; min-width: 44px; min-height: 44px;
 }
 
-/* ── HERO ── */
 #hero {
   min-height: 100vh;
   display: flex; flex-direction: column;
@@ -169,11 +167,10 @@ nav {
   border: 2.5px solid var(--blue); border-radius: 100px;
   font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 700;
   cursor: pointer; text-decoration: none;
-  transition: all 0.2s; 
+  transition: all 0.2s;
 }
 .btn-secondary:hover { background: var(--blue); color: #fff; transform: translateY(-3px); }
 
-/* ── SHARED ── */
 section { padding: 6rem 5vw; }
 
 .section-label {
@@ -196,7 +193,6 @@ section { padding: 6rem 5vw; }
   border-radius: 4px; margin: 1rem 0 1.8rem;
 }
 
-/* ── ABOUT ── */
 #about { background: #FFFAF5; }
 
 .about-grid {
@@ -248,7 +244,6 @@ section { padding: 6rem 5vw; }
 
 .teacher-bio { color: var(--text-muted); font-size: 0.97rem; line-height: 1.65; font-weight: 600; }
 
-/* ── COURSES ── */
 #courses { background: linear-gradient(135deg, #FFF3E0 0%, #FFF9E6 100%); }
 
 .courses-header { max-width: 1100px; margin: 0 auto 3rem; }
@@ -266,8 +261,8 @@ section { padding: 6rem 5vw; }
 .course-card:nth-child(1) { border-color: var(--pink); }
 .course-card:nth-child(2) { border-color: var(--green); }
 
-.course-icon { 
-  font-size: 3rem; margin-bottom: 1rem; display: block; 
+.course-icon {
+  font-size: 3rem; margin-bottom: 1rem; display: block;
 }
 .course-card:nth-child(1) .course-icon { color: var(--pink); }
 .course-card:nth-child(2) .course-icon { color: var(--green); }
@@ -287,7 +282,6 @@ section { padding: 6rem 5vw; }
   border-radius: 100px; font-size: 0.87rem; font-weight: 700; color: var(--blue);
 }
 
-/* ── SHOWCASE ── */
 #showcase {
   background: linear-gradient(160deg, #FFF3E0 0%, #FFF9E6 50%, #FFFAF5 100%);
   position: relative; overflow: hidden;
@@ -318,15 +312,15 @@ section { padding: 6rem 5vw; }
 
 .art-slot-inner {
   width: 100%; height: 100%; background: var(--white);
-  border: 3px dashed rgba(255,159,28,0.4); border-radius: 18px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
-  transition: border-color 0.2s, background 0.2s;
+  border-radius: 18px;
+  overflow: hidden;
 }
-.art-slot:hover .art-slot-inner { border-color: var(--orange); background: #FFFAF5; }
 
-.slot-num  { font-family: 'Fredoka', sans-serif; font-size: 1.4rem; color: rgba(255,159,28,0.3); line-height: 1; }
-.slot-icon { font-size: 2.2rem; color: var(--orange); opacity: 0.4; }
-.slot-label { font-size: 0.8rem; font-weight: 700; color: var(--orange); opacity: 0.6; text-align: center; padding: 0 1rem; }
+.art-slot-inner img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
 
 .slot-lg   { height: 340px; }
 .slot-md   { height: 250px; }
@@ -336,7 +330,6 @@ section { padding: 6rem 5vw; }
 
 .showcase-note { text-align: center; margin-top: 2.5rem; color: var(--text-muted); font-size: 0.92rem; font-weight: 600; }
 
-/* ── CURRICULUM ── */
 #curriculum { background: linear-gradient(135deg, #FFF0E6 0%, #EDE9FE 100%); }
 
 .curriculum-inner { max-width: 850px; margin: 0 auto; }
@@ -398,7 +391,6 @@ section { padding: 6rem 5vw; }
   border-radius: 100px; font-size: 0.85rem; font-weight: 700; color: var(--pink);
 }
 
-/* ── GALLERY ── */
 #gallery { background: var(--white); }
 .gallery-header { max-width: 1100px; margin: 0 auto 3rem; }
 .gallery-masonry { max-width: 1100px; margin: 0 auto; columns: 3; column-gap: 1.5rem; }
@@ -412,21 +404,11 @@ section { padding: 6rem 5vw; }
 
 .gallery-item:hover { transform: scale(1.03); }
 
-.gallery-placeholder {
-  background: var(--bg-main);
-  border: 3px dashed rgba(69,183,209,0.4);
-  border-radius: 20px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 0.6rem;
+.gallery-item img {
+  width: 100%; height: auto;
+  display: block; border-radius: 20px;
 }
 
-.gallery-placeholder .ph-icon { font-size: 2.5rem; color: var(--blue); opacity: 0.4; }
-.gallery-placeholder .ph-text { font-size: 0.82rem; font-weight: 700; color: var(--blue); opacity: 0.6; }
-
-.gp-1 { height: 230px; } .gp-2 { height: 180px; } .gp-3 { height: 290px; }
-.gp-4 { height: 210px; } .gp-5 { height: 250px; } .gp-6 { height: 195px; }
-
-/* ── FEES ── */
 #fees { background: linear-gradient(135deg, #FFF3E0 0%, #E6F9F5 100%); }
 
 .fees-inner {
@@ -467,7 +449,6 @@ section { padding: 6rem 5vw; }
 .pricing-features li { display: flex; align-items: center; gap: 0.8rem; font-size: 1rem; font-weight: 700; color: var(--text-main); }
 .check-icon { font-size: 1.2rem; color: var(--green); }
 
-/* ── FAQ ── */
 #faq { background: #F0FFFE; }
 .faq-inner { max-width: 800px; margin: 0 auto; }
 .faq-header { margin-bottom: 3rem; text-align: center; }
@@ -496,7 +477,6 @@ section { padding: 6rem 5vw; }
 .faq-item.open .faq-answer { max-height: 200px; }
 .faq-answer p { padding: 0 1.5rem 1.3rem; color: var(--text-muted); font-size: 0.97rem; line-height: 1.7; font-weight: 600; }
 
-/* ── CONTACT ── */
 #contact { background: #FFFAF5; }
 .contact-inner {
   max-width: 1100px; margin: 0 auto;
@@ -552,7 +532,6 @@ section { padding: 6rem 5vw; }
 }
 .form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(255,107,107,0.5); }
 
-/* ── FOOTER ── */
 footer {
   background: var(--text-main); color: #fff;
   padding: 3rem 5vw; text-align: center;
@@ -560,7 +539,19 @@ footer {
 .footer-logo { font-family: 'Fredoka', sans-serif; font-size: 2rem; color: var(--yellow); margin-bottom: 0.5rem; }
 .footer-copy { color: rgba(255,255,255,0.5); font-size: 0.87rem; margin-top: 1.5rem; }
 
-/* ── RESPONSIVE PC AND MOBILE OPTIMIZATION ── */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--blue); outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @media (max-width: 992px) {
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: 0.9rem; }
@@ -578,9 +569,11 @@ footer {
     box-shadow: inset 0 10px 15px -10px rgba(0,0,0,0.1);
   }
   .nav-links.active { right: 0; }
-  
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 0.75rem 0; }
+
   .about-grid, .courses-grid, .fees-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  
+
   .showcase-featured, .showcase-row-3, .showcase-row-wide, .showcase-row-last {
     grid-template-columns: 1fr 1fr; gap: 1rem;
   }
@@ -591,17 +584,18 @@ footer {
   .showcase-featured, .showcase-row-3, .showcase-row-wide, .showcase-row-last { grid-template-columns: 1fr; }
   .gallery-masonry { columns: 1; }
   .hero-title { font-size: 2.5rem; }
+  .hero-buttons { flex-direction: column; width: 100%; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">
     <i class="fa-solid fa-palette"></i> Palette
   </a>
-  <button class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+  <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><i class="fa-solid fa-bars"></i></button>
   <ul class="nav-links" id="nav-links">
     <li><a href="#about" onclick="toggleMenu()">About</a></li>
     <li><a href="#courses" onclick="toggleMenu()">Courses</a></li>
@@ -614,7 +608,6 @@ footer {
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-blobs">
     <div class="blob blob-1"></div>
@@ -638,12 +631,11 @@ footer {
     </p>
     <div class="hero-buttons">
       <a href="#contact" class="btn-primary"><i class="fa-solid fa-rocket bounce-icon"></i> Enrol Now</a>
-      <a href="https://wa.me/918268300074?text=Hi%20Durva%2C%20I%27d%20like%20to%20book%20a%20free%20trial%20class%20at%20Palette%20Art%20Studio!" class="btn-secondary" target="_blank"><i class="fa-brands fa-whatsapp bounce-icon"></i> Book a Free Trial</a>
+      <a href="https://wa.me/918268300074?text=Hi%20Durva%2C%20I%27d%20like%20to%20book%20a%20free%20trial%20class%20at%20Palette%20Art%20Studio!" class="btn-secondary" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp bounce-icon"></i> Book a Free Trial</a>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
     <div>
@@ -688,7 +680,6 @@ footer {
   </div>
 </section>
 
-<!-- COURSES -->
 <section id="courses">
   <div class="courses-header">
     <span class="section-label"><i class="fa-solid fa-pen-nib"></i> What We Teach</span>
@@ -728,114 +719,87 @@ footer {
   </div>
 </section>
 
-<!-- SHOWCASE -->
 <section id="showcase">
   <div class="showcase-inner">
     <div class="showcase-header">
       <span class="section-label"><i class="fa-solid fa-star"></i> Durva's Studio</span>
       <h2 class="section-title">My Best Artworks</h2>
       <div class="divider"></div>
-      <p class="section-sub">A glimpse into the kinds of work that inspire every class at Palette. Artwork coming soon!</p>
+      <p class="section-sub">A glimpse into the kinds of work that inspire every class at Palette.</p>
     </div>
 
-    <!-- Row 1 -->
     <div class="showcase-featured">
       <div class="art-slot">
         <div class="art-slot-inner slot-lg">
-          <span class="slot-icon"><i class="fa-regular fa-image bounce-icon"></i></span>
-          <span class="slot-num">01</span>
-          <span class="slot-label">Featured Artwork</span>
+          <img src="asset/art.webp" width="1700" height="1698" alt="Featured artwork by Durva Dongre" loading="eager" fetchpriority="high" decoding="async">
         </div>
       </div>
       <div class="art-slot">
         <div class="art-slot-inner slot-lg">
-          <span class="slot-icon"><i class="fa-solid fa-palette bounce-icon"></i></span>
-          <span class="slot-num">02</span>
-          <span class="slot-label">Featured Artwork</span>
+          <img src="asset/shiv-parvati.webp" width="1270" height="1600" alt="Shiv Parvati poster artwork" loading="eager" fetchpriority="high" decoding="async">
         </div>
       </div>
     </div>
 
-    <!-- Row 2 -->
     <div class="showcase-row-3">
       <div class="art-slot">
         <div class="art-slot-inner slot-md">
-          <span class="slot-icon"><i class="fa-solid fa-paintbrush bounce-icon"></i></span>
-          <span class="slot-num">03</span>
-          <span class="slot-label">Acrylic / Canvas</span>
+          <img src="asset/krishna-abstract.webp" width="1108" height="1599" alt="Acrylic canvas artwork, Krishna abstract" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="art-slot">
         <div class="art-slot-inner slot-md">
-          <span class="slot-icon"><i class="fa-solid fa-scroll bounce-icon"></i></span>
-          <span class="slot-num">04</span>
-          <span class="slot-label">Poster Art</span>
+          <img src="asset/vishnu.webp" width="695" height="1139" alt="Vishnu poster art" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="art-slot">
         <div class="art-slot-inner slot-md">
-          <span class="slot-icon"><i class="fa-solid fa-spray-can bounce-icon"></i></span>
-          <span class="slot-num">05</span>
-          <span class="slot-label">Mixed Media</span>
+          <img src="asset/abstract-vinay.webp" width="1127" height="1396" alt="Mixed media abstract artwork" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
 
-    <!-- Row 3 -->
     <div class="showcase-row-wide">
       <div class="art-slot">
         <div class="art-slot-inner slot-wide">
-          <span class="slot-icon"><i class="fa-solid fa-mountain-sun bounce-icon"></i></span>
-          <span class="slot-num">06</span>
-          <span class="slot-label">Landscape</span>
+          <img src="asset/time-abstract.webp" width="1219" height="1600" alt="Landscape abstract artwork" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="art-slot">
         <div class="art-slot-inner slot-port">
-          <span class="slot-icon"><i class="fa-solid fa-pencil bounce-icon"></i></span>
-          <span class="slot-num">07</span>
-          <span class="slot-label">Sketch Work</span>
+          <img src="asset/sketch-boss.webp" width="1200" height="1599" alt="Pencil sketch work" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="art-slot">
         <div class="art-slot-inner slot-port">
-          <span class="slot-icon"><i class="fa-solid fa-magnifying-glass bounce-icon"></i></span>
-          <span class="slot-num">08</span>
-          <span class="slot-label">Detail Study</span>
+          <img src="asset/abstract-girl.webp" width="1210" height="1600" alt="Detail study artwork" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
 
-    <!-- Row 4 -->
     <div class="showcase-row-last">
       <div class="art-slot">
         <div class="art-slot-inner slot-sq">
-          <span class="slot-icon"><i class="fa-solid fa-masks-theater bounce-icon"></i></span>
-          <span class="slot-num">09</span>
-          <span class="slot-label">Canvas Fabric Work</span>
+          <img src="asset/kaalima.webp" width="996" height="1568" alt="Canvas fabric work artwork" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="art-slot">
         <div class="art-slot-inner slot-sq">
-          <span class="slot-icon"><i class="fa-solid fa-wand-magic-sparkles bounce-icon"></i></span>
-          <span class="slot-num">10</span>
-          <span class="slot-label">Creative Freeplay</span>
+          <img src="asset/parshuram.webp" width="1188" height="1600" alt="Creative freeplay artwork" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CURRICULUM TIMELINE -->
 <section id="curriculum">
   <div class="curriculum-inner">
     <span class="section-label"><i class="fa-solid fa-book-open"></i> How We Learn</span>
     <h2 class="section-title">The Curriculum Journey</h2>
     <div class="divider"></div>
     <p class="section-sub">A structured approach to ensure skill development week by week.</p>
-    
+
     <div class="timeline">
-      <!-- Item 1 -->
       <div class="timeline-item open" onclick="toggleAccordion(this)">
         <div class="timeline-dot"></div>
         <button class="timeline-month-btn">
@@ -852,7 +816,6 @@ footer {
           </div>
         </div>
       </div>
-      <!-- Item 2 -->
       <div class="timeline-item" onclick="toggleAccordion(this)">
         <div class="timeline-dot"></div>
         <button class="timeline-month-btn">
@@ -869,7 +832,6 @@ footer {
           </div>
         </div>
       </div>
-      <!-- Item 3 -->
       <div class="timeline-item" onclick="toggleAccordion(this)">
         <div class="timeline-dot"></div>
         <button class="timeline-month-btn">
@@ -890,7 +852,6 @@ footer {
   </div>
 </section>
 
-<!-- GALLERY -->
 <section id="gallery">
   <div class="gallery-header text-center">
     <span class="section-label"><i class="fa-solid fa-camera-retro"></i> In The Studio</span>
@@ -898,29 +859,27 @@ footer {
     <div class="divider"></div>
   </div>
   <div class="gallery-masonry">
-    <!-- Placeholders -->
-    <div class="gallery-item gallery-placeholder gp-1">
-      <i class="fa-solid fa-image ph-icon bounce-icon"></i><span class="ph-text">Student Art</span>
+    <div class="gallery-item">
+      <img src="asset/sketch-cherry.webp" width="1200" height="1599" alt="Student art sketch" loading="lazy" decoding="async">
     </div>
-    <div class="gallery-item gallery-placeholder gp-2">
-      <i class="fa-solid fa-palette ph-icon bounce-icon"></i><span class="ph-text">Class Photo</span>
+    <div class="gallery-item">
+      <img src="asset/rustom-pavri.webp" width="1142" height="1599" alt="Class photo artwork" loading="lazy" decoding="async">
     </div>
-    <div class="gallery-item gallery-placeholder gp-3">
-      <i class="fa-solid fa-brush ph-icon bounce-icon"></i><span class="ph-text">Masterpiece</span>
+    <div class="gallery-item">
+      <img src="asset/krishna collage.webp" width="1031" height="879" alt="Krishna collage masterpiece" loading="lazy" decoding="async">
     </div>
-    <div class="gallery-item gallery-placeholder gp-4">
-      <i class="fa-solid fa-star ph-icon bounce-icon"></i><span class="ph-text">Creative Moment</span>
+    <div class="gallery-item">
+      <img src="asset/doodle.webp" width="1278" height="1600" alt="Creative moment doodle artwork" loading="lazy" decoding="async">
     </div>
-    <div class="gallery-item gallery-placeholder gp-5">
-      <i class="fa-solid fa-shapes ph-icon bounce-icon"></i><span class="ph-text">Project Work</span>
+    <div class="gallery-item">
+      <img src="asset/sketch-sanyu.webp" width="1200" height="1599" alt="Student project sketch work" loading="lazy" decoding="async">
     </div>
-    <div class="gallery-item gallery-placeholder gp-6">
-      <i class="fa-solid fa-wand-magic-sparkles ph-icon bounce-icon"></i><span class="ph-text">Happy Artist</span>
+    <div class="gallery-item">
+      <img src="asset/sketch-gal.webp" width="1200" height="1599" alt="Happy artist sketch work" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
 
-<!-- FEES -->
 <section id="fees">
   <div class="fees-inner">
     <div>
@@ -948,7 +907,6 @@ footer {
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq">
   <div class="faq-inner">
     <div class="faq-header">
@@ -972,7 +930,6 @@ footer {
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
     <div>
@@ -980,7 +937,7 @@ footer {
       <h2 class="section-title">Let's Talk Art!</h2>
       <div class="divider"></div>
       <p class="section-sub">Have a question or ready to secure a spot for your child? Drop a message or reach out on WhatsApp.</p>
-      
+
       <div class="contact-rows">
         <div class="contact-row">
           <div class="contact-icon"><i class="fa-solid fa-location-dot bounce-icon"></i></div>
@@ -997,30 +954,30 @@ footer {
           </div>
         </div>
       </div>
-      
-      <a href="https://wa.me/918268300074?text=Hi%20Durva%2C%20I%27m%20interested%20in%20enrolling%20my%20child%20at%20Palette%20Art%20Studio!" class="whatsapp-btn" target="_blank">
+
+      <a href="https://wa.me/918268300074?text=Hi%20Durva%2C%20I%27m%20interested%20in%20enrolling%20my%20child%20at%20Palette%20Art%20Studio!" class="whatsapp-btn" target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp"></i> Chat with Durva
       </a>
     </div>
-    
+
     <div class="contact-form">
       <h3 class="form-title">Send a Message</h3>
       <form action="#" method="POST">
         <div class="form-row">
-          <label>Parent's Name</label>
-          <input type="text" placeholder="Enter your name" required>
+          <label for="parent-name">Parent's Name</label>
+          <input type="text" id="parent-name" placeholder="Enter your name" required>
         </div>
         <div class="form-row">
-          <label>Child's Age</label>
-          <select required>
+          <label for="child-age">Child's Age</label>
+          <select id="child-age" required>
             <option value="" disabled selected>Select age</option>
             <option value="6-10">6 - 10 Years</option>
             <option value="11-13">11 - 13 Years</option>
           </select>
         </div>
         <div class="form-row">
-          <label>Message / Question</label>
-          <textarea placeholder="How can we help?" required></textarea>
+          <label for="message">Message / Question</label>
+          <textarea id="message" placeholder="How can we help?" required></textarea>
         </div>
         <button type="submit" class="form-submit"><i class="fa-solid fa-paper-plane"></i> Submit Request</button>
       </form>
@@ -1028,25 +985,23 @@ footer {
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <h2 class="footer-logo"><i class="fa-solid fa-palette"></i> Palette Art Studio</h2>
   <p style="font-weight: 600;">Panvel, Maharashtra</p>
   <p class="footer-copy">© 2026 Palette Art Studio by Durva Dongre. All rights reserved.</p>
 </footer>
 
-<!-- Interactive Scripts -->
 <script>
-  // Mobile Menu Toggle
-  function toggleMenu() {
-    const nav = document.getElementById('nav-links');
-    nav.classList.toggle('active');
-  }
+function toggleMenu() {
+  const nav = document.getElementById('nav-links');
+  const btn = document.querySelector('.mobile-toggle');
+  const isActive = nav.classList.toggle('active');
+  btn.setAttribute('aria-expanded', isActive);
+}
 
-  // Accordion Toggle for Timeline & FAQ
-  function toggleAccordion(element) {
-    element.classList.toggle('open');
-  }
+function toggleAccordion(element) {
+  element.classList.toggle('open');
+}
 </script>
 
 </body>
